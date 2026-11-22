@@ -67,7 +67,3 @@ SQL (CTEs, window functions: `RANK`, `NTILE`, running `SUM`, moving `AVG`), Pyth
 data cleaning and validation, KPI definition, unit testing (pytest), CI (GitHub Actions),
 dashboarding (Streamlit / Power BI).
 
-## Before you put this on a CV
-Run it, read `docs/learning_guide.md`, change something (a new KPI, a new cleaning rule, your
-own dataset), and make sure you can explain every file. Describe it honestly as a personal
-project using simulated data.
