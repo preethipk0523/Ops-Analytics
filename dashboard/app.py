@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+import altair as alt
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from src.config import DB_PATH  # noqa: E402
@@ -56,7 +57,15 @@ monthly = f.groupby(f["created_at"].dt.to_period("M").astype(str)).agg(
 left.subheader("Tickets created per month")
 left.bar_chart(monthly["tickets"])
 right.subheader("SLA adherence per month (%)")
-right.line_chart((monthly["sla"] * 100).round(1))
+sla_month = (monthly["sla"] * 100).round(1).reset_index()
+sla_month.columns = ["month", "sla"]
+right.altair_chart(
+    alt.Chart(sla_month).mark_line(point=True).encode(
+        x=alt.X("month:N", title=None),
+        y=alt.Y("sla:Q", title="SLA %", scale=alt.Scale(domain=[0, 100])),
+    ),
+    use_container_width=True,
+)
 
 by_team = f.groupby("team").agg(avg_hours=("resolution_hours", "mean"), sla=("sla_met", "mean"))
 left.subheader("SLA adherence by team (%)")
