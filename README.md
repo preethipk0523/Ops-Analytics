@@ -1,5 +1,7 @@
 # Operations Performance Analytics (SQL + Python + Dashboard)
 
+![CI](https://github.com/preethipk0523/Ops-Analytics/actions/workflows/ci.yml/badge.svg)
+
 An end-to-end data analyst project: take a messy export of operations tickets, clean it,
 load it into a SQL database, calculate service KPIs with SQL, and show them in a dashboard.
 
